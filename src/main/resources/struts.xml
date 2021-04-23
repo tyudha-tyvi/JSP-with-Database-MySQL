@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Sturts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources" value="package" />
+	
+	<package name="/" extends="struts-default">
+		<action name="registerform">
+			<result name="success">/register.jsp</result>
+		</action>
+		
+		<action name="loginform">
+			<result name="success">/login.jsp</result>
+		</action>
+		
+		<action name="adminform">
+			<result name="success">/loginadmin.jsp</result>
+		</action>
+		
+		<action name="registeruser" class="com.actions.Register">
+			<result name="success">/thankyou.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		
+		<action name="profilelist" class="com.actions.ProfileList">
+			<result name="profile">/profilelist.jsp</result>
+		</action>
+		
+		<action name="updatedetails" class="com.actions.Update">
+			<result name="update">/update.jsp</result>
+		</action>
+		
+		<action name="updatedetailsadmin" class="com.actions.UpdateAdmin">
+			<result name="update">/updateadmin.jsp</result>
+		</action>
+		
+		<action name="deleterecord" class="com.actions.Delete">
+			<result name="delete">/delete.jsp</result>
+		</action>
+		
+		<action name="login" class="com.actions.Login">
+			<result name="login">/login.jsp</result>  
+			<result name="success" type="redirectAction">
+				<param name="actionName">profile</param> 
+				<param name="email">${email}</param>
+			</result> 
+			<result name="error">/login.jsp</result>  
+		</action>
+		
+		<action name="profile" class="com.actions.Profile">  
+			<result name="success" type="dispatcher">
+			    <param name="location">welcome.jsp</param>
+			    <param name="email">${email}</param>
+			</result>
+		</action>
+
+		<action name="profileuser" class="com.actions.Profile">  
+			<result name="success" type="dispatcher">
+			    <param name="location">profile.jsp</param>
+			    <param name="email">${email}</param>
+			</result>
+			<result name="edit" type="redirectAction">
+				<param name="actionName">updatedetails</param>
+				<param name="email">${email}</param>
+			</result>  
+		</action>
+		
+		<action name="loginadmin" class="com.actions.LoginAdmin">  
+			<result name="success">/welcomeadmin.jsp</result>  
+			<result name="error">/index.jsp</result>  
+		</action>
+		
+		<action name="password">
+			<result name="success">/password.jsp</result>
+		</action>
+		
+		<action name="home">
+			<result name="success" type="redirectAction">
+				<param name="actionName">profile</param> 
+				<param name="email">${email}</param>
+			</result>
+		</action>
+		
+		<action name="homeadmin">
+			<result name="success">/welcomeadmin.jsp</result>
+		</action>
+		
+		<action name="postjob" class="com.actions.JobPost">
+			<result name="success">/jobpost.jsp</result>
+		</action>
+		
+		<action name="jobform">
+			<result name="success">/jobpost.jsp</result>
+		</action>
+		
+		<action name="joblist" class="com.actions.JobList">
+			<result name="joblist">/joblist.jsp</result>
+		</action>
+		
+		<action name="postthread" class="com.actions.ThreadPost">
+			<result name="success">/threadpost.jsp</result>
+		</action>
+		
+		<action name="threadform">
+			<result name="success">/threadpost.jsp</result>
+		</action>
+		
+		<action name="threadlist" class="com.actions.ThreadList">
+			<result name="threadlist">/threadlist.jsp</result>
+		</action>
+		
+		<action name="email">
+			<result name="success">/email.jsp</result>
+		</action>
+		
+		<action name="sendemail" class="com.actions.Mail">
+			<result name="success">/emailsend.jsp</result>
+			<result name="error">/welcomeadmin.jsp</result>
+		</action>
+		
+		<action name="search" class="com.actions.Search">  
+			<result name="SUCCESS">/search.jsp</result>
+			<result name="ERROR">/welcome.jsp</result>  
+		</action>
+		
+		<action name="searchuser">
+			<result name="success">/search.jsp</result>
+		</action>
+		
+		<action name="inbox">
+			<result name="success">/message.jsp</result>
+		</action>
+		
+		<action name="message" class="com.actions.ActionMessage">
+			<result name="CHATLIST">/chatList.jsp</result>
+			<result name="CHAT">/chat.jsp</result>
+			<result name="ERROR" type="redirectAction">
+				<param name="actionName">loginform</param>
+			</result>   
+		</action>
+
+	</package>
+	
+</struts>
